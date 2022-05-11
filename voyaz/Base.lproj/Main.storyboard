@@ -127,21 +127,23 @@
                                             <rect key="frame" x="0.0" y="34" width="394" height="31"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites Only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CM-Og-G0v" userLabel="Favorites Only Label">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="31"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kit-RW-Gsr" userLabel="Favorites Only Switch">
-                                                    <rect key="frame" x="300" y="0.0" width="96" height="31"/>
+                                                    <rect key="frame" x="345" y="0.0" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="onFilterFavoritesSwitchValueChanged:" destination="ehs-Qb-ggY" eventType="valueChanged" id="QYE-Ki-nOi"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Kit-RW-Gsr" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1CM-Og-G0v" secondAttribute="leading" constant="300" id="ZMO-j0-T7x"/>
-                                                <constraint firstItem="Kit-RW-Gsr" firstAttribute="trailing" secondItem="d3E-ya-Xr9" secondAttribute="trailing" id="fBz-QF-0VF"/>
+                                                <constraint firstItem="Kit-RW-Gsr" firstAttribute="top" secondItem="d3E-ya-Xr9" secondAttribute="top" id="YMg-S0-9JW"/>
+                                                <constraint firstItem="Kit-RW-Gsr" firstAttribute="leadingMargin" relation="greaterThanOrEqual" secondItem="1CM-Og-G0v" secondAttribute="leading" id="ZMO-j0-T7x"/>
+                                                <constraint firstItem="Kit-RW-Gsr" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d3E-ya-Xr9" secondAttribute="trailing" id="vDT-mS-LQg"/>
+                                                <constraint firstItem="Kit-RW-Gsr" firstAttribute="bottom" secondItem="d3E-ya-Xr9" secondAttribute="bottom" id="yUs-xX-RpS"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
