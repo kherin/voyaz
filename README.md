@@ -14,5 +14,5 @@ A prototype app which showcases different Mauritius-located landmarks and a corr
 <img src="images/filtered_landmarks.png" width="200"><br/>
 
 ### Screen 3: View Landmark description
-<img src="images/all_landmarks.png" width="200">
+<img src="images/landmark_description.png" width="200">
 
