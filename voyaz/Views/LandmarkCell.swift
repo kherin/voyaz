@@ -20,7 +20,16 @@ class LandmarkCell: UITableViewCell {
             nameLabel.text = landmark.name
             primaryImageView.image = image(atPath: landmark.primaryImagePath)
             favoriteImageView.image = starImage(isFavorite: landmark.isFavorite)
+            favoriteImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LandmarkCell.onStarIconTapped)))
+            favoriteImageView.isUserInteractionEnabled = true
+            
         }
+    }
+    
+    @objc func onStarIconTapped() {
+        let isFavorite = landmark?.isFavorite ?? false
+        landmark?.isFavorite = !isFavorite
+        primaryImageView.image = image(atPath: landmark?.primaryImagePath)
     }
     
     private func image(atPath path: String?) -> UIImage? {
