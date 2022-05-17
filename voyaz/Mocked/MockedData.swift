@@ -25,7 +25,7 @@ class MockedData {
             location: "Floreal/Curepipe",
             primaryImagePath: "trou_aux_cerfs_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: true,
             category: "crater"
         ),
@@ -36,7 +36,7 @@ class MockedData {
             location: "Le Morne Peninsula",
             primaryImagePath: "le_morne_brabant_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: true,
             category: "mountain"
         ),
@@ -47,7 +47,7 @@ class MockedData {
             location: "Port Louis",
             primaryImagePath: "signal_mountain_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: false,
             category: "mountain"
         ),
@@ -58,7 +58,7 @@ class MockedData {
             location: "Suffren Street",
             primaryImagePath: "fort_adelaide_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: true,
             category: "port"
         ),
@@ -69,7 +69,7 @@ class MockedData {
             location: "Mahebourg",
             primaryImagePath: "vieux_grand_port_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: false,
             category: "port"
         ),
@@ -80,7 +80,7 @@ class MockedData {
             location: "Baie aux Tortues",
             primaryImagePath: "balaclava_ruins_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: true,
             category: "ruins"
         ),
@@ -91,7 +91,7 @@ class MockedData {
             location: "Chamarel",
             primaryImagePath: "chamarel_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: true,
             category: "dunes"
         ),
@@ -102,7 +102,7 @@ class MockedData {
             location: "Ile aux Cerfs",
             primaryImagePath: "ile_aux_cerfs",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: false,
             category: "island"
         ),
@@ -113,7 +113,7 @@ class MockedData {
             location: "Curepipe",
             primaryImagePath: "tamarind_falls",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: true,
             category: "falls"
         ),
@@ -124,7 +124,7 @@ class MockedData {
             location: "Floreal/Curepipe",
             primaryImagePath: "rochester_falls_primary",
             mapImagePath: "map_image",
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+            placeDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
             isFavorite: false,
             category: "falls"
         )

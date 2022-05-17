@@ -91,7 +91,7 @@ class LandmarkDetailViewController: UIViewController {
         //text
         landmarkTitleLabel.text = landmark?.name
         landmarkLocationLabel.text = "\(landmark?.location ?? "-"), \(landmark?.district ?? "")"
-        landmarkDescriptionLabel.text = landmark?.description ?? "No description"
+        landmarkDescriptionLabel.text = landmark?.placeDescription ?? "No description"
         
         
         
