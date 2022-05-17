@@ -22,6 +22,7 @@
 		E85BF2752824473C005D0084 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85BF2742824473C005D0084 /* Landmark.swift */; };
 		E85BF27928244900005D0084 /* MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85BF27828244900005D0084 /* MockedData.swift */; };
 		E85BF27E282450E8005D0084 /* LandmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85BF27D282450E8005D0084 /* LandmarkCell.swift */; };
+		E85C05DD283409DB0064D085 /* Voyaz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E85C05DB283409DB0064D085 /* Voyaz.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E85BF2742824473C005D0084 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		E85BF27828244900005D0084 /* MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedData.swift; sourceTree = "<group>"; };
 		E85BF27D282450E8005D0084 /* LandmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkCell.swift; sourceTree = "<group>"; };
+		E85C05DC283409DB0064D085 /* Voyaz.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Voyaz.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		E85BF2512824352D005D0084 /* voyaz */ = {
 			isa = PBXGroup;
 			children = (
+				E85C05DA2834097C0064D085 /* Data Models */,
 				E85BF27728244880005D0084 /* Mocked */,
 				E85BF26C2824356E005D0084 /* Shared */,
 				E85BF26B28243562005D0084 /* ViewControllers */,
@@ -150,6 +153,14 @@
 			path = Mocked;
 			sourceTree = "<group>";
 		};
+		E85C05DA2834097C0064D085 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				E85C05DB283409DB0064D085 /* Voyaz.xcdatamodeld */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E85C05DD283409DB0064D085 /* Voyaz.xcdatamodeld in Sources */,
 				E85BF272282446C2005D0084 /* LandmarksDataSource.swift in Sources */,
 				E85BF26F2824437D005D0084 /* LandmarksViewController.swift in Sources */,
 				E85BF2572824352D005D0084 /* ViewController.swift in Sources */,
@@ -433,6 +445,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E85C05DB283409DB0064D085 /* Voyaz.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E85C05DC283409DB0064D085 /* Voyaz.xcdatamodel */,
+			);
+			currentVersion = E85C05DC283409DB0064D085 /* Voyaz.xcdatamodel */;
+			path = Voyaz.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E85BF2472824352D005D0084 /* Project object */;
 }

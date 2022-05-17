@@ -14,7 +14,7 @@ struct Landmark {
     var location: String?
     var primaryImagePath: String?
     var mapImagePath: String?
-    var description: String?
+    var placeDescription: String?
     var isFavorite: Bool = false
     var category: String
 }
