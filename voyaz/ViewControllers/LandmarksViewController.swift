@@ -21,35 +21,35 @@ class LandmarksViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        // 1
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        // 2
-        let entity =
-            NSEntityDescription.entity(forEntityName: "LandmarkModel",
-                                       in: managedContext)!
-        
-        let landmark = NSManagedObject(entity: entity,
-                                       insertInto: managedContext)
-        
-        // 3
-        landmark.setValue(UUID().uuidString, forKeyPath: "id")
-        landmark.setValue("Trou aux Cerfs", forKeyPath: "name")
-        
-        
-        // 4
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-        
+//        guard let appDelegate =
+//                UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//        
+//        // 1
+//        let managedContext =
+//            appDelegate.persistentContainer.viewContext
+//        
+//        // 2
+//        let entity =
+//            NSEntityDescription.entity(forEntityName: "LandmarkModel",
+//                                       in: managedContext)!
+//        
+//        let landmark = NSManagedObject(entity: entity,
+//                                       insertInto: managedContext)
+//        
+//        // 3
+//        landmark.setValue(UUID().uuidString, forKeyPath: "id")
+//        landmark.setValue("Trou aux Cerfs", forKeyPath: "name")
+//        
+//        
+//        // 4
+//        do {
+//            try managedContext.save()
+//        } catch let error as NSError {
+//            print("Could not save. \(error), \(error.userInfo)")
+//        }
+//        
         
     }
     
