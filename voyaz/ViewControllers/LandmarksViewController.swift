@@ -12,6 +12,7 @@ class LandmarksViewController: UITableViewController {
     var isFavoriteFilterActive: Bool = false
     var filteredLandmarks: [Landmark] = []
     var landmarkDataSource = LandmarksDataSource()
+    var loadedLandmarks: [Landmark] = []
     
     @IBAction func onFilterFavoritesSwitchValueChanged(_ sender: UISwitch) {
         isFavoriteFilterActive = sender.isOn
@@ -21,44 +22,38 @@ class LandmarksViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        guard let appDelegate =
-//                UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//        
-//        // 1
-//        let managedContext =
-//            appDelegate.persistentContainer.viewContext
-//        
-//        // 2
-//        let entity =
-//            NSEntityDescription.entity(forEntityName: "LandmarkModel",
-//                                       in: managedContext)!
-//        
-//        let landmark = NSManagedObject(entity: entity,
-//                                       insertInto: managedContext)
-//        
-//        // 3
-//        landmark.setValue(UUID().uuidString, forKeyPath: "id")
-//        landmark.setValue("Trou aux Cerfs", forKeyPath: "name")
-//        
-//        
-//        // 4
-//        do {
-//            try managedContext.save()
-//        } catch let error as NSError {
-//            print("Could not save. \(error), \(error.userInfo)")
-//        }
-//        
+        guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
         
+        // MARK: Preload mocked landmarks data into Core Data
+        let backgroundContext =
+            appDelegate.persistentContainer.newBackgroundContext()
+        for landmarkMock in landmarkDataSource.landmarks {
+            let landmarkObject = LandmarkModel(context: backgroundContext)
+            landmarkObject.id = landmarkMock.id
+            landmarkObject.name = landmarkMock.name
+            landmarkObject.category = landmarkMock.category
+            landmarkObject.district = landmarkMock.district
+            landmarkObject.location = landmarkMock.location
+            landmarkObject.isFavorite = landmarkMock.isFavorite
+            landmarkObject.mapImagePath = landmarkMock.mapImagePath
+            landmarkObject.placeDescription = landmarkMock.placeDescription
+        }
+        
+        do {
+            try backgroundContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //1
-        guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
@@ -72,7 +67,7 @@ class LandmarksViewController: UITableViewController {
         //3
         do {
             let landmarks = try managedContext.fetch(fetchRequest)
-            print("landmarks: \(landmarks)")
+            print("Fetched landmarks: \(landmarks.count)")
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -104,5 +99,4 @@ extension LandmarksViewController {
             destination.landmark = landmarkDataSource.landmark(at: self.tableView.indexPathForSelectedRow!, onlyFavorites: isFavoriteFilterActive)
         }
     }
-    
 }
