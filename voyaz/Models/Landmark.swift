@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import CoreData
 
 struct Landmark {
     var id: String
-    var name: String?
-    var district: String?
-    var location: String?
-    var primaryImagePath: String?
-    var mapImagePath: String?
-    var placeDescription: String?
-    var isFavorite: Bool = false
+    var name: String
+    var district: String
+    var location: String
+    var primaryImagePath: String
+    var mapImagePath: String
+    var placeDescription: String
+    var isFavorite: Bool
     var category: String
 }

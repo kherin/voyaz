@@ -6,20 +6,71 @@
 //
 
 import Foundation
+import CoreData
 
 class LandmarksDataSource {
-    var landmarks: [Landmark] = []
+    static var landmarks: [Landmark] = []
     
-    static func fetch() -> [Landmark] {
-        // TODO: Remove mocked data afterwards
-        MockedData().landmarks
+    static func fetch(appDelegate: AppDelegate) -> [Landmark] {
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        
+        let fetchRequest =
+            NSFetchRequest<LandmarkModel>(entityName: "LandmarkModel")
+        
+        do {
+            let landmarkModelRecords = try managedContext.fetch(fetchRequest)
+            
+            landmarks = landmarkModelRecords.map { (landmarkModelRecord) -> Landmark in
+                return Landmark(
+                    id: landmarkModelRecord.id ?? "",
+                    name: landmarkModelRecord.name ?? "",
+                    district: landmarkModelRecord.district ?? "",
+                    location: landmarkModelRecord.location ?? "",
+                    primaryImagePath: landmarkModelRecord.primaryImagePath ?? "",
+                    mapImagePath: landmarkModelRecord.mapImagePath ?? "",
+                    placeDescription: landmarkModelRecord.placeDescription ?? "",
+                    isFavorite: landmarkModelRecord.isFavorite,
+                    category: landmarkModelRecord.category ?? ""
+                )
+            }
+            
+            print("Fetched landmarks: \(landmarks.count)")
+            return landmarks
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return []
+        }
     }
     
-    init() {
-        landmarks = LandmarksDataSource.fetch()
+    static func preload(appDelegate: AppDelegate) {
+        let backgroundContext =
+            appDelegate.persistentContainer.newBackgroundContext()
+        for landmarkMock in MockedData().landmarks {
+            let landmarkObject = LandmarkModel(context: backgroundContext)
+            landmarkObject.id = landmarkMock.id
+            landmarkObject.name = landmarkMock.name
+            landmarkObject.category = landmarkMock.category
+            landmarkObject.district = landmarkMock.district
+            landmarkObject.location = landmarkMock.location
+            landmarkObject.isFavorite = landmarkMock.isFavorite
+            landmarkObject.mapImagePath = landmarkMock.mapImagePath
+            landmarkObject.placeDescription = landmarkMock.placeDescription
+            landmarkObject.primaryImagePath = landmarkMock.primaryImagePath
+        }
+        
+        do {
+            print("Saving landmarks data...")
+            try backgroundContext.save()
+            // fetching landmarks data from Core Data
+            landmarks = fetch(appDelegate: appDelegate)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
-    func getCount(onlyFavorites: Bool = false) -> Int {
+    static func getCount(onlyFavorites: Bool = false) -> Int {
         if onlyFavorites {
             return filterFavorites().count
         } else {
@@ -27,7 +78,7 @@ class LandmarksDataSource {
         }
     }
     
-    func landmark(at indexPath: IndexPath, onlyFavorites: Bool = false) -> Landmark {
+    static func landmark(at indexPath: IndexPath, onlyFavorites: Bool = false) -> Landmark {
         if onlyFavorites {
             return filterFavorites()[indexPath.row]
         } else {
@@ -35,7 +86,7 @@ class LandmarksDataSource {
         }
     }
     
-    func filterFavorites() -> [Landmark] {
+    static func filterFavorites() -> [Landmark] {
         landmarks.filter { $0.isFavorite }
     }
 }

@@ -13,7 +13,7 @@ class FeaturedViewController: UITableViewController {
 
 extension FeaturedViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        landmarksDataSource.getCount()
+        LandmarksDataSource.getCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -7,6 +7,30 @@
 
 import Foundation
 
+class LandmarkMock {
+    var id: String
+    var name: String?
+    var district: String?
+    var location: String?
+    var primaryImagePath: String?
+    var mapImagePath: String?
+    var placeDescription: String?
+    var isFavorite: Bool
+    var category: String
+    
+    init(id: String, name: String?, district: String?, location: String?, primaryImagePath: String?, mapImagePath: String?, placeDescription: String?, isFavorite: Bool, category: String) {
+        self.id = id
+        self.name = name
+        self.district = district
+        self.location = location
+        self.primaryImagePath = primaryImagePath
+        self.mapImagePath = mapImagePath
+        self.placeDescription = placeDescription
+        self.isFavorite = isFavorite
+        self.category = category
+    }
+}
+
 class MockedData {
     var categories: [String] = [
         "mountain",
@@ -17,8 +41,8 @@ class MockedData {
         "island",
         "ruins"
     ]
-    var landmarks: [Landmark] = [
-        Landmark( // 1
+    var landmarks: [LandmarkMock] = [
+        LandmarkMock( // 1
             id: "1",
             name: "Trou aux Cerfs",
             district: "Plaines Wilhems",
@@ -29,7 +53,7 @@ class MockedData {
             isFavorite: true,
             category: "crater"
         ),
-        Landmark( // 2
+        LandmarkMock( // 2
             id: "2",
             name: "Le Morne Brabant",
             district: "Plaines Wilhems",
@@ -40,7 +64,7 @@ class MockedData {
             isFavorite: true,
             category: "mountain"
         ),
-        Landmark( // 3
+        LandmarkMock( // 3
             id: "3",
             name: "Signal Mountain",
             district: "Port Louis",
@@ -51,7 +75,7 @@ class MockedData {
             isFavorite: false,
             category: "mountain"
         ),
-        Landmark( // 4
+        LandmarkMock( // 4
             id: "4",
             name: "Fort Adelaide",
             district: "Port Louis,",
@@ -62,7 +86,7 @@ class MockedData {
             isFavorite: true,
             category: "port"
         ),
-        Landmark( // 5
+        LandmarkMock( // 5
             id: "5",
             name: "Vieux Grand Port",
             district: "Mahebourg",
@@ -73,7 +97,7 @@ class MockedData {
             isFavorite: false,
             category: "port"
         ),
-        Landmark( // 6
+        LandmarkMock( // 6
             id: "6",
             name: "Balaclava Ruins",
             district: "Baie aux Tortues",
@@ -84,7 +108,7 @@ class MockedData {
             isFavorite: true,
             category: "ruins"
         ),
-        Landmark( // 7
+        LandmarkMock( // 7
             id: "7",
             name: "Chamarel Dunes",
             district: "Chamarel",
@@ -95,7 +119,7 @@ class MockedData {
             isFavorite: true,
             category: "dunes"
         ),
-        Landmark( // 8
+        LandmarkMock( // 8
             id: "8",
             name: "Ile aux Cerfs",
             district: "Ile aux Cerfs",
@@ -106,7 +130,7 @@ class MockedData {
             isFavorite: false,
             category: "island"
         ),
-        Landmark( // 9
+        LandmarkMock( // 9
             id: "9",
             name: "Tamarind Falls",
             district: "Plaines Wilhems ",
@@ -117,7 +141,7 @@ class MockedData {
             isFavorite: true,
             category: "falls"
         ),
-        Landmark( // 10
+        LandmarkMock( // 10
             id: "10",
             name: "Rochester Falls",
             district: "Plaines Wilhems",
