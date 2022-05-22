@@ -6,47 +6,65 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 class LandmarksDataSource {
     static var landmarks: [Landmark] = []
     
-    static func fetch(appDelegate: AppDelegate) -> [Landmark] {
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
+    static func fetch(appDelegate: AppDelegate, favoritesOnly: Bool = false) -> [Landmark] {
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<LandmarkModel>(entityName: "LandmarkModel")
         
-        
-        let fetchRequest =
-            NSFetchRequest<LandmarkModel>(entityName: "LandmarkModel")
+        if favoritesOnly {
+            fetchRequest.predicate = NSPredicate(format: "isFavorite = %d", true)
+        }
         
         do {
-            let landmarkModelRecords = try managedContext.fetch(fetchRequest)
-            
-            landmarks = landmarkModelRecords.map { (landmarkModelRecord) -> Landmark in
-                return Landmark(
-                    id: landmarkModelRecord.id ?? "",
-                    name: landmarkModelRecord.name ?? "",
-                    district: landmarkModelRecord.district ?? "",
-                    location: landmarkModelRecord.location ?? "",
-                    primaryImagePath: landmarkModelRecord.primaryImagePath ?? "",
-                    mapImagePath: landmarkModelRecord.mapImagePath ?? "",
-                    placeDescription: landmarkModelRecord.placeDescription ?? "",
-                    isFavorite: landmarkModelRecord.isFavorite,
-                    category: landmarkModelRecord.category ?? ""
-                )
-            }
-            
+            let landmarkModelRecords: [LandmarkModel] = try managedContext.fetch(fetchRequest)
+            landmarks = landmarkModelRecords.map { toLandmark(landmarkModelRecord: $0) }
             print("Fetched landmarks: \(landmarks.count)")
+            
             return landmarks
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("Could not fetch landmarks. Error: \(error), \(error.userInfo)")
             return []
         }
     }
     
+    static func toLandmark(landmarkModelRecord: LandmarkModel) -> Landmark {
+        return Landmark(
+            id: landmarkModelRecord.id ?? "",
+            name: landmarkModelRecord.name ?? "",
+            district: landmarkModelRecord.district ?? "",
+            location: landmarkModelRecord.location ?? "",
+            primaryImagePath: landmarkModelRecord.primaryImagePath ?? "",
+            mapImagePath: landmarkModelRecord.mapImagePath ?? "",
+            placeDescription: landmarkModelRecord.placeDescription ?? "",
+            isFavorite: landmarkModelRecord.isFavorite,
+            category: landmarkModelRecord.category ?? ""
+        )
+    }
+    
+    static func setAsFavorite(appDelegate: AppDelegate, landmarkId: String, isFavorite: Bool = false) {
+        let fetchRequest = NSFetchRequest<LandmarkModel>(entityName: "LandmarkModel")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", landmarkId)
+        
+        do {
+            let managedContext = appDelegate.persistentContainer.newBackgroundContext()
+            let fetchedLandmarks: [LandmarkModel] = try managedContext.fetch(fetchRequest)
+            let managedObject = fetchedLandmarks[0]
+            managedObject.setValue(isFavorite, forKey: "isFavorite")
+            print("managedObject: \(managedObject)")
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not set landmark Id: \(landmarkId) as favorite: Error: \(error)")
+        }
+    }
+    
     static func preload(appDelegate: AppDelegate) {
-        let backgroundContext =
-            appDelegate.persistentContainer.newBackgroundContext()
+        let backgroundContext = appDelegate.persistentContainer.newBackgroundContext()
         for landmarkMock in MockedData().landmarks {
             let landmarkObject = LandmarkModel(context: backgroundContext)
             landmarkObject.id = landmarkMock.id
@@ -63,26 +81,63 @@ class LandmarksDataSource {
         do {
             print("Saving landmarks data...")
             try backgroundContext.save()
+            
             // fetching landmarks data from Core Data
-            landmarks = fetch(appDelegate: appDelegate)
+            let _ = fetch(appDelegate: appDelegate)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
-    static func getCount(onlyFavorites: Bool = false) -> Int {
+    static func getCount(appDelegate: AppDelegate, onlyFavorites: Bool = false) -> Int {
         if onlyFavorites {
-            return filterFavorites().count
+            return getAllFavoritesCount(appDelegate: appDelegate)
         } else {
-            return landmarks.count
+            return getAllCount(appDelegate: appDelegate)
         }
     }
     
-    static func landmark(at indexPath: IndexPath, onlyFavorites: Bool = false) -> Landmark {
+    // fetch count for all landmarks from Core Data
+    static func getAllCount(appDelegate: AppDelegate, favoritesOnly: Bool = false) -> Int {
+        let fetchRequest = NSFetchRequest<LandmarkModel>(entityName: "LandmarkModel")
+        if favoritesOnly {
+            fetchRequest.predicate = NSPredicate(format: "isFavorite = %d", true)
+        }
+        
+        do {
+            let context = appDelegate.persistentContainer.viewContext
+            let landmarksCount: Int = try context.count(for: fetchRequest)
+            return landmarksCount
+        } catch let error as NSError {
+            print("Could not count for all landmarks. Error: \(error)")
+            return 0
+        }
+    }
+    
+    // fetch count for all favorite landmarks from Core Data
+    static func getAllFavoritesCount(appDelegate: AppDelegate) -> Int {
+        return getAllCount(appDelegate: appDelegate, favoritesOnly: true)
+    }
+    
+    // fetch all landmarks from Core Data
+    static func fetchAllLandmarks(appDelegate: AppDelegate, favoritesOnly: Bool = false) -> [Landmark] {
+        return fetch(appDelegate: appDelegate)
+    }
+    
+    // fetch all favorite landmarks from Core Data
+    static func fetchAllFavoriteLandmarks(appDelegate: AppDelegate) -> [Landmark] {
+        return fetch(appDelegate: appDelegate, favoritesOnly: true)
+    }
+    
+    static func landmark(appDelegate: AppDelegate, at indexPath: IndexPath, onlyFavorites: Bool = false) -> Landmark {
         if onlyFavorites {
-            return filterFavorites()[indexPath.row]
+            let favoriteLandmarks: Landmark = fetchAllFavoriteLandmarks(appDelegate: appDelegate)[indexPath.row]
+            print("favoriteLandmarks: \(favoriteLandmarks)")
+            return favoriteLandmarks
         } else {
-            return landmarks[indexPath.row]
+            let allLandmarks: Landmark = fetchAllLandmarks(appDelegate: appDelegate)[indexPath.row]
+            print("allLandmarks: \(allLandmarks)")
+            return allLandmarks
         }
     }
     

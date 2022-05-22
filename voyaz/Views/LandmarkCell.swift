@@ -27,9 +27,16 @@ class LandmarkCell: UITableViewCell {
     }
     
     @objc func onStarIconTapped() {
-        let isFavorite = landmark?.isFavorite ?? false
+        let landmarkId: String = landmark?.id ?? ""
+        let isFavorite: Bool = landmark?.isFavorite ?? false
         landmark?.isFavorite = !isFavorite
         primaryImageView.image = image(atPath: landmark?.primaryImagePath)
+        
+        guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        LandmarksDataSource.setAsFavorite(appDelegate: appDelegate, landmarkId: landmarkId, isFavorite: !isFavorite)
     }
     
     private func image(atPath path: String?) -> UIImage? {

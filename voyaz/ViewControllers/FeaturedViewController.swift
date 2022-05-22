@@ -8,12 +8,15 @@
 import UIKit
 
 class FeaturedViewController: UITableViewController {
-    var landmarksDataSource = LandmarksDataSource()
 }
 
 extension FeaturedViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        LandmarksDataSource.getCount()
+        guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+            return 0
+        }
+        return LandmarksDataSource.getCount(appDelegate: appDelegate)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
