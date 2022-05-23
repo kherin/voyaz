@@ -32,8 +32,8 @@ class LandmarksViewController: UITableViewController {
         }
         
         // MARK - Preloading landmarks data
-//        LandmarksDataSource.preload(appDelegate: appDelegate)
-        let _ = LandmarksDataSource.fetch(appDelegate: appDelegate)
+        LandmarksDataSource.preload(appDelegate: appDelegate)
+//        let _ = LandmarksDataSource.fetch(appDelegate: appDelegate)
     }
 }
 

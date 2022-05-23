@@ -111,10 +111,13 @@ class LandmarkDetailViewController: UIViewController {
     
     private func setupConstraints() {
         // setup constraint for map image
+        let margins = view.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
             mapImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: 500),
-            mapImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 300)
+            mapImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            mapImageView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            mapImageView.heightAnchor.constraint(equalToConstant: view.bounds.height / 6),
         ])
         
         // setup constraint for landmark image
