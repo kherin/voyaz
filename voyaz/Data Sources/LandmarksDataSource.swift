@@ -23,7 +23,6 @@ class LandmarksDataSource {
         do {
             let landmarkModelRecords: [LandmarkModel] = try managedContext.fetch(fetchRequest)
             landmarks = landmarkModelRecords.map { toLandmark(landmarkModelRecord: $0) }
-            print("Fetched landmarks: \(landmarks.count)")
             
             return landmarks
         } catch let error as NSError {
@@ -119,6 +118,13 @@ class LandmarksDataSource {
         return getAllCount(appDelegate: appDelegate, favoritesOnly: true)
     }
     
+    // fetch count by landmark category
+    static func getCountByCategory(appDelegate: AppDelegate, category: String = "") -> Int {
+        return LandmarksDataSource
+            .fetchAllLandmarks(appDelegate: appDelegate, favoritesOnly: false)
+            .filter { $0.category == category }.count
+    }
+    
     // fetch all landmarks from Core Data
     static func fetchAllLandmarks(appDelegate: AppDelegate, favoritesOnly: Bool = false) -> [Landmark] {
         return fetch(appDelegate: appDelegate)
@@ -132,13 +138,20 @@ class LandmarksDataSource {
     static func landmark(appDelegate: AppDelegate, at indexPath: IndexPath, onlyFavorites: Bool = false) -> Landmark {
         if onlyFavorites {
             let favoriteLandmarks: Landmark = fetchAllFavoriteLandmarks(appDelegate: appDelegate)[indexPath.row]
-            print("favoriteLandmarks: \(favoriteLandmarks)")
             return favoriteLandmarks
         } else {
             let allLandmarks: Landmark = fetchAllLandmarks(appDelegate: appDelegate)[indexPath.row]
-            print("allLandmarks: \(allLandmarks)")
             return allLandmarks
         }
+    }
+    
+    static func landmarkByCategory(appDelegate: AppDelegate, at indexPath: IndexPath, category: String) -> Landmark {
+        let allLandmarks: [Landmark] = fetchAllLandmarks(appDelegate: appDelegate).filter { $0.category == category }
+        return allLandmarks[indexPath.row]
+    }
+    
+    static func getCategories() -> [String] {
+        return MockedData().categories
     }
     
     static func filterFavorites() -> [Landmark] {

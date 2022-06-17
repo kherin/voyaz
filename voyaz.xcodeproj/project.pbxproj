@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8293AB2285C9E3000DA68E7 /* FeaturedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8293AB1285C9E3000DA68E7 /* FeaturedPhotoCell.swift */; };
+		E8293AB7285CD6A600DA68E7 /* FeaturedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8293AB6285CD6A600DA68E7 /* FeaturedHeaderView.swift */; };
 		E830BA4828250B540094839E /* LandmarkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830BA4728250B540094839E /* LandmarkDetailViewController.swift */; };
-		E830BA4B2825327B0094839E /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830BA4A2825327B0094839E /* FeaturedViewController.swift */; };
 		E830BA4E282535F00094839E /* FeaturedLandmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830BA4D282535F00094839E /* FeaturedLandmarkCell.swift */; };
 		E830BA5728253F990094839E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830BA5628253F990094839E /* TabBarViewController.swift */; };
+		E850953A285C4F390038EF65 /* FeaturedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8509539285C4F390038EF65 /* FeaturedCollectionViewController.swift */; };
 		E85BF2532824352D005D0084 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85BF2522824352D005D0084 /* AppDelegate.swift */; };
 		E85BF2552824352D005D0084 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85BF2542824352D005D0084 /* SceneDelegate.swift */; };
 		E85BF2572824352D005D0084 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85BF2562824352D005D0084 /* ViewController.swift */; };
@@ -26,10 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E8293AB1285C9E3000DA68E7 /* FeaturedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPhotoCell.swift; sourceTree = "<group>"; };
+		E8293AB6285CD6A600DA68E7 /* FeaturedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedHeaderView.swift; sourceTree = "<group>"; };
 		E830BA4728250B540094839E /* LandmarkDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDetailViewController.swift; sourceTree = "<group>"; };
-		E830BA4A2825327B0094839E /* FeaturedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		E830BA4D282535F00094839E /* FeaturedLandmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedLandmarkCell.swift; sourceTree = "<group>"; };
 		E830BA5628253F990094839E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		E8509539285C4F390038EF65 /* FeaturedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCollectionViewController.swift; sourceTree = "<group>"; };
 		E85BF24F2824352D005D0084 /* voyaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voyaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85BF2522824352D005D0084 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E85BF2542824352D005D0084 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,8 +136,10 @@
 			children = (
 				E85BF26E2824437D005D0084 /* LandmarksViewController.swift */,
 				E830BA4728250B540094839E /* LandmarkDetailViewController.swift */,
-				E830BA4A2825327B0094839E /* FeaturedViewController.swift */,
 				E830BA5628253F990094839E /* TabBarViewController.swift */,
+				E8293AB1285C9E3000DA68E7 /* FeaturedPhotoCell.swift */,
+				E8509539285C4F390038EF65 /* FeaturedCollectionViewController.swift */,
+				E8293AB6285CD6A600DA68E7 /* FeaturedHeaderView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -234,15 +240,17 @@
 				E85C05DD283409DB0064D085 /* Voyaz.xcdatamodeld in Sources */,
 				E85BF272282446C2005D0084 /* LandmarksDataSource.swift in Sources */,
 				E85BF26F2824437D005D0084 /* LandmarksViewController.swift in Sources */,
+				E8293AB7285CD6A600DA68E7 /* FeaturedHeaderView.swift in Sources */,
+				E8293AB2285C9E3000DA68E7 /* FeaturedPhotoCell.swift in Sources */,
 				E85BF2572824352D005D0084 /* ViewController.swift in Sources */,
 				E830BA4E282535F00094839E /* FeaturedLandmarkCell.swift in Sources */,
 				E830BA5728253F990094839E /* TabBarViewController.swift in Sources */,
 				E830BA4828250B540094839E /* LandmarkDetailViewController.swift in Sources */,
-				E830BA4B2825327B0094839E /* FeaturedViewController.swift in Sources */,
 				E85BF2532824352D005D0084 /* AppDelegate.swift in Sources */,
 				E85BF2552824352D005D0084 /* SceneDelegate.swift in Sources */,
 				E85BF27928244900005D0084 /* MockedData.swift in Sources */,
 				E85BF2752824473C005D0084 /* Landmark.swift in Sources */,
+				E850953A285C4F390038EF65 /* FeaturedCollectionViewController.swift in Sources */,
 				E85BF27E282450E8005D0084 /* LandmarkCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
